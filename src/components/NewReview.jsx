@@ -23,7 +23,7 @@ const NewReview = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        const url = "https://exquisito.onrender.com/api/v1/reviews/create";
+        const url = "https://exquisito-web.onrender.com/api/v1/reviews/create";
 
         if (restaurant_name.length == 0 || review_date.length == 0 || body.length == 0 || tenderloin_rating.length == 0 || sides_rating.length == 0 || 
             menu_rating.length == 0 || price_rating.length == 0 || decor_rating.length == 0 || service_rating.length == 0 || total_rating.length == 0 || 
@@ -48,7 +48,7 @@ const NewReview = () => {
             .post(url, form)
             .then((res) => {
                 if(res.status == 200) {
-                    navigate(`/review/${res.data.id}`)
+                    navigate(`https://exquisito-web.onrender.com/review/${res.data.id}`)
                 };
             });
     };

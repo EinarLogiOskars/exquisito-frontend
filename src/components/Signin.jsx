@@ -14,7 +14,7 @@ const Signin = (props) => {
     const onSubmit = (event) => {
         event.preventDefault();
 
-        const url = "https://exquisito.onrender.com/api/v1/auth/sign_in";
+        const url = "https://exquisito-web.onrender.com/api/v1/auth/sign_in";
         const form = new FormData();
         form.append("email", email);
         form.append("password", password);

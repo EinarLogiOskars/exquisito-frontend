@@ -10,7 +10,7 @@ const Review = (props) => {
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        const url = `https://exquisito.onrender.com/api/v1/reviews/${params.id}`;
+        const url = `https://exquisito-web.onrender.com/api/v1/reviews/${params.id}`;
 
         axios.get(url).then((res) => {
             setReview(res.data);
@@ -19,9 +19,7 @@ const Review = (props) => {
     }, [params.id]);
 
     const deleteReview = () => {
-        const url = `https://exquisito.onrender.com/api/v1/reviews/destroy/${params.id}`;
-        const csrfToken = document.querySelector('[name=csrf-token]').content;
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
+        const url = `https://exquisito-web.onrender.com/api/v1/reviews/destroy/${params.id}`;
         const headers = JSON.parse(props.token)
         /*axios
             .delete(url, { headers: {
