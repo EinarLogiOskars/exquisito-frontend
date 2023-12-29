@@ -7,7 +7,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        const url = "http://localhost:3000/api/v1/reviews";
+        const url = "https://exquisito-web.onrender.com/api/v1/reviews";
         axios.get(url).then((res) => {
             setReviews(res.data);
         })

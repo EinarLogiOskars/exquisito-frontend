@@ -47,10 +47,14 @@ const Review = (props) => {
                     alt={`${review.restaurant_name} image`}
                     className="img-fluid position-absolute"
                 />
-                <div className="overlay bg-dark position-absolute" />
-                <h1 className="display-4 position-relative text-white">
-                    {review.restaurant_name} <br/> {review.review_date}
-                </h1>
+                <div className="overlay bg-dark position-absolute d-flex flex-column align-items-center justify-content-center">
+                    <h1 className="display-4 position-relative text-white">
+                        {review.restaurant_name}
+                    </h1>
+                    <h2 className="position-relative text-white">
+                        {new Date(review.review_date).toDateString()}
+                    </h2>
+                </div>
             </div>
             <div className="container py-5">
                 <div className="row">
