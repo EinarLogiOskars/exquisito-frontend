@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import backgroundImg from "../assets/images/signup-in-background.webp"
 
 const Signin = (props) => {
     const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Signin = (props) => {
     const onSubmit = (event) => {
         event.preventDefault();
 
-        const url = "http://localhost:3000/api/v1/auth/sign_in";
+        const url = "https://exquisito.onrender.com/api/v1/auth/sign_in";
         const form = new FormData();
         form.append("email", email);
         form.append("password", password);

@@ -15,7 +15,7 @@ const Comments = (props) => {
     const [commentBody, setCommentBody] = useState('');
 
     useEffect(() => {
-        const url = `http://localhost:3000/api/v1/reviews/${props.reviewId}/comments`;
+        const url = `https://exquisito.onrender.com/api/v1/reviews/${props.reviewId}/comments`;
         const headers = JSON.parse(props.token);
         axios.get(url, { headers: {
             'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const Comments = (props) => {
     const onSubmit = (event) => {
         const headers = JSON.parse(props.token);
         console.log(headers)
-        const url = `http://localhost:3000/api/v1/reviews/${props.reviewId}/comments`
+        const url = `https://exquisito.onrender.com/api/v1/reviews/${props.reviewId}/comments`
         const form = new FormData();
         form.append('user_id', headers['id']);
         form.append('commenter', headers['username'])

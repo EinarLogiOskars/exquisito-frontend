@@ -23,7 +23,7 @@ const NewReview = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        const url = "/api/v1/reviews/create";
+        const url = "https://exquisito.onrender.com/api/v1/reviews/create";
 
         if (restaurant_name.length == 0 || review_date.length == 0 || body.length == 0 || tenderloin_rating.length == 0 || sides_rating.length == 0 || 
             menu_rating.length == 0 || price_rating.length == 0 || decor_rating.length == 0 || service_rating.length == 0 || total_rating.length == 0 || 
@@ -43,9 +43,7 @@ const NewReview = () => {
         form.append('decor_rating', decor_rating);
         form.append('service_rating', service_rating);
         form.append('total_rating', total_rating);
-
-        const token = document.querySelector('[name=csrf-token]').content;
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+        
         axios
             .post(url, form)
             .then((res) => {
