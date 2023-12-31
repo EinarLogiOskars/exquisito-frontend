@@ -1,11 +1,53 @@
 @import "bootstrap/scss/bootstrap";
 
 .bg-lighter {
-  background-color: #E9D5B6;
+  background-color: #f8e6cd;
 }
 
 .bg-darker {
+  background-color: #E9D5B6;
+}
 
+.bg-red {
+  background-color: #CF7A77;
+}
+
+.text-red {
+  color: #CF7A77;
+} 
+
+.custom-button-red.btn {
+  background-color: #CF7A77;
+  color: #FFF;
+  border: none;
+}
+
+.bg-blue {
+background-color: #7EA3B4;
+}
+
+.text-blue {
+  color: #7EA3B4;
+}
+
+.custom-button-blue.btn {
+  background-color: #7EA3B4;
+  color: #FFF;
+  border: none;
+}
+
+.bg-beige {
+background-color: #E5D6C7;
+}
+
+.text-beige{
+  color: #E5D6C7;
+} 
+
+.custom-button-beige.btn {
+  background-color: #E5D6C7;
+  color: #FFF;
+  border: none;
 }
 
 .custom-button.btn {
@@ -13,6 +55,8 @@
   color: #FFF;
   border: none;
 }
+
+
 
 .hero {
   width: 100vw;
@@ -42,6 +86,50 @@
   box-shadow: 10px 10px 10px rgba(30,30,30,0.5);
 }
 
+.navbar-logo {
+  width: 180px;
+  height: auto;
+  padding-right: 10px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.diagonal-neg {
+  padding: 5px;
+  content: '';
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.diagonal-pos {
+  padding: 5px;
+  content: '';
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.home-css{
+  &.main-div {
+    height: 100%;
+  }
+  &.border-black {
+    border: solid;
+  }
+} 
 
 .articles-css {
     $main-green: #79dd09 !default;

@@ -50,7 +50,7 @@ const Reviews = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <section className="jumbotron jumbotron-fluid" style={{ backgroundColor: '#E9D5B6' }}>
+                <section className="jumbotron jumbotron-fluid bg-light">
                     <div className="container pt-5">
                         <p className="lead text-center text-muted">
                             We're on a mission to find the best beef tenderloin in town.
@@ -59,7 +59,7 @@ const Reviews = () => {
                         <hr className="my-4"></hr>
                     </div>
                 </section>
-                <div className="" style={{ backgroundColor: '#CCBBA2' }}>
+                <div className="">
                     <main className="container">
                         <div className="col p-5">
                             {reviews.length > 0 ? allReviews : noReview}
