@@ -15,15 +15,15 @@ const Reviews = () => {
 
     const allReviews = reviews.map((review, index) => (
         <div className="articles-css" key={index}>
-            <article className="postcard light yellow" style={{borderRadius: 0 + 'px'}}>
+            <article className="postcard bg-white" style={{borderRadius: 0 + 'px'}}>
                 <a className="postcard__img_link" href="#">
                     <img className="postcard__img" src={review.image} alt="Image Title" />
                 </a>
                 <div className="postcard__text t-dark">
                     <h1 className="postcard__title yellow"><a href="#">{review.restaurant_name}</a></h1>
                     <div className="postcard__subtitle small">
-                        <time dateTime={review.review_date}>
-                            <i className="fas fa-calendar-alt mr-2">{review.review_date}</i>
+                        <time dateTime={new Date(review.review_date).toDateString()}>
+                            <i className="fas fa-calendar-alt mr-2">{new Date(review.review_date).toLocaleString("en-US", {month: "short", day: "2-digit", year: "numeric", })}</i>
                         </time>
                     </div>
                     <div className="postcard__bar"></div>
@@ -48,9 +48,9 @@ const Reviews = () => {
     );
 
     return (
-        <div className="container-fluid">
+        <div className="reviews-css container-fluid">
             <div className="row">
-                <section className="jumbotron jumbotron-fluid bg-light">
+                <section className="jumbotron jumbotron-fluid bg-beige diagonal-background2">
                     <div className="container pt-5">
                         <p className="lead text-center text-muted">
                             We're on a mission to find the best beef tenderloin in town.
@@ -59,12 +59,12 @@ const Reviews = () => {
                         <hr className="my-4"></hr>
                     </div>
                 </section>
-                <div className="">
-                    <main className="container">
+                <div className="diagonal-background">
+                    <div className="container">
                         <div className="col p-5">
                             {reviews.length > 0 ? allReviews : noReview}
                         </div>
-                    </main>
+                    </div>
                 </div>
             </div>
         </div>
