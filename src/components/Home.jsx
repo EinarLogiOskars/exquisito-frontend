@@ -1,33 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import img1 from "../assets/images/top-view-fillet.webp"
+
+const keep = () => {
+    return (
+        <div className="home-css main-div" >
+            <div className="col1" />
+            <div className="col2" />
+            <div className="col3">
+                <h1 className="display-5">Hey!</h1>
+                <h5 className="home-css lead p-5">
+                    We are a couple of culinary enthusiast on a mouth-watering quest through Reykjavík, 
+                    searching for the best tenderloin in the city. 
+                </h5>
+                <h5 className="lead px-5">
+                    With an insatiable appetite, we explore diverse restaurants, 
+                    from cozy local bistros to upscale dining establishments.
+                </h5>
+                <h5 className="lead p-5">
+                    Our journey is a flavorful adventure, sampling tenderloin in every style and 
+                    preparation imaginable, determined to find the ultimate culinary gem.
+                </h5>
+                <h1 className="pb-5 display-5"><Link className="" to="/reviews">Check out our reviews!</Link></h1>
+            </div>
+        </div>
+    )
+}
 
 const Home = () => {
     return (
-        <div className="home-css main-div" >
-            <div className="diagonal-background d-flex">
-                <div className="home-css col">
-                    <div className="h5-1 col-lg-4">
-                    <h5 className="home-css lead p-5">
-                        <h1 className="text-red hey display-5">Hey!</h1>
-                        We are a couple of culinary enthusiast on a mouth-watering quest through Reykjavík, 
-                        searching for the best tenderloin in the city. 
-                    </h5>
-                    </div>
-                    <div className="h5-2 col-lg-4" >
-                    <h5 className="lead px-5">
-                        With an insatiable appetite, we explore diverse restaurants, 
-                        from cozy local bistros to upscale dining establishments.
-                    </h5>
-                    </div>
-                    <div className="h5-3 col-lg-4">
-                    <h5 className="lead p-5">
-                        Our journey is a flavorful adventure, sampling tenderloin in every style and 
-                        preparation imaginable, determined to find the ultimate culinary gem.
-                    </h5>
-                    </div>
-                    <h1 className="home-css rlink pb-5 display-5"><Link className="text-red" to="/reviews">Check out our reviews!</Link></h1>
+        <div className="home-css main-div">
+            <div className="div1">
+                <div className="div1-1">
+                    <h1 className="">Exquisito</h1>
+                    <p>
+                        Come along on a culinary adventure to find the best beef tenderloin in Reykjavík.
+                    </p>
+                    <p>
+                        <small><small><small><small>(and maybe some day the world!)</small></small></small></small>
+                    </p>
                 </div>
-            </div> 
+                <div className="div1-2">
+                    <img
+                        src={img1} />
+                </div>
+            </div>
         </div>
     );
 };

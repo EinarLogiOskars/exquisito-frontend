@@ -5,7 +5,7 @@ import logo from '../assets/images/logo.svg';
 const Navbar = (props) => {
 
     return(
-        <div className="container-fluid bg-red">
+        <div className="container-fluid bg-black">
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <Link className="" to="/home"><img className="navbar-logo" src={logo}/></Link>
@@ -15,10 +15,10 @@ const Navbar = (props) => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/reviews">Reviews</Link>
+                                <Link className="nav-link active text-white" aria-current="page" to="/reviews">Reviews</Link>
                             </li>
                             <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Link className="nav-link dropdown-toggle text-white" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </Link>
                                 <ul className="dropdown-menu">
@@ -29,15 +29,15 @@ const Navbar = (props) => {
                             </li>
                             <form className="d-flex mx-5" role="search">
                                 <input id="search" className="form-control me-2" type="search" placeholder="Search..." aria-label="Search"/>
-                                <button className="btn btn-outline" type="submit">Search</button>
+                                <button className="btn btn-outline text-white" type="submit">Search</button>
                             </form>
                         </ul>
                         <ul className="navbar-nav d-flex">
                             <li>
-                                {props.token ? <button className="nav-link disabled">{JSON.parse(props.token)['username']}</button> : <></>}
+                                {props.token ? <button className="nav-link disabled text-white">{JSON.parse(props.token)['username']}</button> : <></>}
                             </li>
                             <li className="nav-item">
-                                {props.token ? <button className="nav-link" onClick={props.removeToken} >Sign out</button> : <Link className="nav-link" to="/signin">Sign in</Link> }
+                                {props.token ? <button className="nav-link text-white" onClick={props.removeToken} >Sign out</button> : <Link className="nav-link text-white" to="/signin">Sign in</Link> }
                             </li>
                         </ul>
                     </div>
