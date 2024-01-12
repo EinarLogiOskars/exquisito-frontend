@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useToken from "../hooks/useToken"
+import { createUser } from '../api/users.js'
 
 const Signup = (props) => {
     const navigate = useNavigate();
@@ -9,7 +9,24 @@ const Signup = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passConfirm, setPassConfirm] = useState("");
-    const { setToken } = useToken();
+
+    async function register(form) {
+        try {
+            const res = await createUser(form);
+            console.log(res);
+            const userToken = {
+                client: res.headers['client'],
+                uid: res.headers['uid'],
+                uToken: res.headers['access-token'],
+                username: res.data.data.username,
+                id: res.data.data.id
+            };
+            props.setToken(JSON.stringify(userToken));
+            navigate("/reviews");
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
+    }
 
     const onChange = (event, setFunction) => {
         setFunction(event.target.value);
@@ -18,34 +35,19 @@ const Signup = (props) => {
     const onSubmit = (event) => {
         event.preventDefault();
 
-        const url = "https://exquisito-web.onrender.com/api/v1/auth";
         const form = new FormData();
         form.append("username", username);
         form.append("email", email);
         form.append("password", password);
         form.append("password_confirmation", passConfirm);
 
-        axios.post(url, form)
-            .then((res) => {
-                console.log(res);
-                const userToken = {
-                    client: res.headers['client'],
-                    uid: res.headers['uid'],
-                    uToken: res.headers['access-token'],
-                    username: res.data.data.username,
-                    id: res.data.data.id
-                };
-                props.setToken(JSON.stringify(userToken));
-                navigate("/reviews");
-            }).catch((res) => {
-                console.log(res);
-            });
+        register(form);
     };
 
     return (
         <div className="h-100 container-fluid sign-in-out-background" >
             <div className="h-100 d-flex align-items-center justify-content-center">
-                <div className="mask gradient-custom-3 mt-5">
+                <div className="mask gradient-custom-3 offset-lg-6">
                     <div className="card text-white blur-effect">
                         <div className="card-body p-5">
 

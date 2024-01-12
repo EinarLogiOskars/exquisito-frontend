@@ -39,7 +39,7 @@ const Signin = (props) => {
     return (
         <div className="h-100 container-fluid sign-in-out-background" >
             <div className="h-100 d-flex align-items-center justify-content-center">
-                <div className="mask gradient-custom-3 mt-5">
+                <div className="mask gradient-custom-3 offset-lg-6">
                     <div className="card text-white blur-effect" >
                         <div className="card-body p-5">
 

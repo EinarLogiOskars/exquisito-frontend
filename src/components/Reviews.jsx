@@ -42,7 +42,7 @@ const Reviews = () => {
     const noReview = (
         <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
             <h4>
-                If you can read this, the webserver is booting up. It will be ready in a moment!
+                If you can read this, the webserver is getting ready. This list will automatically refresh when it's ready!
             </h4>
         </div>
     );

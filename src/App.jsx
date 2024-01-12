@@ -21,18 +21,18 @@ function App() {
   };
 
   return (
-      <div className="vh-100 container-fluid d-flex flex-column px-0">
-          {renderNav()}
-          <Routes>
-              <Route path="/" element={<Welcome />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/reviews" element={<Reviews />} />
-              <Route path="/review/:id" element={<Review token={token} setToken={setToken} />} />
-              <Route path="/review" element={<NewReview />} />
-              <Route path="/signup" element={<Signup setToken={setToken} />} />
-              <Route path="/signin" element={<Signin setToken={setToken} />} />
-          </Routes>
-      </div>
+    <div className="vh-100 container-fluid d-flex flex-column px-0"> 
+        {renderNav()}
+        <Routes>
+            <Route path="/" element={<Welcome token={token} />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/review/:id" element={<Review token={token} setToken={setToken} />} />
+            <Route path="/review" element={<NewReview />} />
+            <Route path="/signup" element={<Signup setToken={setToken} />} />
+            <Route path="/signin" element={<Signin setToken={setToken} />} />
+        </Routes>
+    </div>
   );
 };
 

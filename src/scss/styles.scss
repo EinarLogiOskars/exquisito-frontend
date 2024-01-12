@@ -47,6 +47,7 @@
   background-image: url('../assets/images/signup-in-background.webp');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .blur-effect {
@@ -61,13 +62,12 @@
   padding-right: 10px;
 }
 
-
 .welcome-css {
   .main-div {
     position: relative;
     display: flex;
   }
-  .parallax-div {
+  .div {
     background-color: black;
     height: 100vh;
     display: flex;
@@ -79,20 +79,20 @@
     opacity: 0.8;
     object-fit: cover;
   }
-  .parallax-inner {
+  .inner {
     height: 100%;
     position: relative;
     position: fixed;
     display: grid;
     align-items: end;
   }
-  .parallax-inner > div {
+  .inner > div {
     margin: 100px;
     padding-left: 40px;
     padding-right: 40px;
     border: solid;
   }
-  .parallax-inner > div > h1 {
+  .inner > div > h1 {
     font-weight: 200;
     font-size: 500%;
   }
@@ -103,17 +103,7 @@
 }
 
 .reviews-css {
-  .diagonal-background {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #ffffff 0%, #E5D6C7 10%, #E5D6C7 100%);
-  }
   
-  .diagonal-background2 {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #E5D6C7 30%, #ffffff 100%);
-  }
 }
 
 .home-css{
@@ -122,6 +112,10 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+  }
+  .parallax-container {
+    min-height: 100vh;
+    background-attachment: fixed;
   }
   .div1 {
     position: relative;
@@ -137,28 +131,88 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 3%;
   }
   .div1-1 > h1 {
-    padding-top: 20px;
+    margin-left: 3%;
     font-weight: 200;
     font-size: 350%;
+    text-align: center;
   }
   .div1-1 > p {
+    margin-left: 3%;
     font-weight: 300;
     font-size: 125%;
+    text-align: center;
   }
-  .div1-2 {
+  .div1-buffer {
     position: relative;
-    width: 100%;
-    height: 50%;
+    background-color: white;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3%;
+  }
+  .div1-buffer > p {
+    margin: 3%;
+    font-weight: 300;
+    font-size: 125%;
+    text-align: center;
+  }
+  .linkdiv {
     display: flex;
     justify-content: center;
-    overflow: hidden;
   }
-  .div1-2 > img {
-    max-width: 80%;
+  .rlink {
+    color: black;
+    font-weight: 300;
   }
-  
+  .div1-parallax {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+  }
+  .div1-parallax > div {
+    background-image: url("../assets/images/top-view-fillet.webp");
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+  }
+  .div1-parallax2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+  }
+  .div1-parallax2 > div {
+    background-image: url("../assets/images/restaurant.webp");
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+  .div1-parallax3 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+  }
+  .div1-parallax3 > div  {
+    background-image: url("../assets/images/fillet.webp");
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
 } 
 
 .articles-css {

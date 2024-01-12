@@ -5,7 +5,7 @@ import logo from '../assets/images/logo.svg';
 const Navbar = (props) => {
 
     return(
-        <div className="container-fluid bg-black">
+        <div className="container-fluid bg-black blur-effect">
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <Link className="" to="/home"><img className="navbar-logo" src={logo}/></Link>
