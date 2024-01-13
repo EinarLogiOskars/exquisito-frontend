@@ -6,11 +6,11 @@ const apiService = axios.create({
     baseURL: API_BASE_URL,
 });
 
-export const createUser = async (signupForm) => {
+export const getReview = async (review) => {
     try {
-        const response = await apiService.post('/api/v1/auth', signupForm);
+        const response = await apiService.get(`/api/v1/reviews/${review}`);
         return response;
     } catch (error) {
-        throw error;
-    };
+        return error;
+    }
 };

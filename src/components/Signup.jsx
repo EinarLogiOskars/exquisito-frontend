@@ -13,7 +13,6 @@ const Signup = (props) => {
     async function register(form) {
         try {
             const res = await createUser(form);
-            console.log(res);
             const userToken = {
                 client: res.headers['client'],
                 uid: res.headers['uid'],

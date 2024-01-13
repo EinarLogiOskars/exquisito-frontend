@@ -21,7 +21,7 @@ function App() {
   };
 
   return (
-    <div className="vh-100 container-fluid d-flex flex-column px-0"> 
+    <div className="main-app-container">
         {renderNav()}
         <Routes>
             <Route path="/" element={<Welcome token={token} />} />

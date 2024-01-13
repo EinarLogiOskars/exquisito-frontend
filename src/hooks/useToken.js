@@ -17,7 +17,7 @@ function useToken() {
 
       function removeToken() {
          const headers = JSON.parse(token)
-         const url = "http://localhost:3000/api/v1/auth/sign_out"
+         const url = "https://exquisito-web.onrender.com/api/v1/auth/sign_out"
          axios.delete(url, { headers: {
             "client": headers['client'],
             "uid": headers['uid'],

@@ -2,99 +2,86 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Comments from "./Comments";
+import { getReview } from "../api/reviews";
 
 const Review = (props) => {
     const params = useParams();
-    const navigate = useNavigate();
     const [review, setReview] = useState();
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        const url = `https://exquisito-web.onrender.com/api/v1/reviews/${params.id}`;
-
-        axios.get(url).then((res) => {
-            setReview(res.data);
-            setLoading(false);
-        });
+        (async () => {
+            try {
+                const res = await getReview(params.id);
+                setReview(res.data);
+                setLoading(false);
+            } catch (error) {
+                console.log('Error fetching review: ', error);
+            };
+        })();
     }, [params.id]);
-
-    const deleteReview = () => {
-        const url = `https://exquisito-web.onrender.com/api/v1/reviews/destroy/${params.id}`;
-        const headers = JSON.parse(props.token)
-        /*axios
-            .delete(url, { headers: {
-                "uid": headers['uid'],
-                "client": headers['client'],
-                "access-token": headers['uToken']
-            } } )
-            .then((res) => {
-                navigate("/reviews");
-            });
-            */
-    };
 
     if(isLoading) {
         return <p>Loading data.....</p>
     }
+    
+    const keep = (
+        <>
+            {review.image}
+            {review.restaurant_name}
+            {new Date(review.review_date).toDateString()}
+            {review.tenderloin_rating}
+            {review.sides_rating}
+            {review.menu_rating}
+            {review.price_rating}
+            {review.decor_rating}
+            {review.service_rating}
+            {review.total_rating}
+            <div className="secondary-color" dangerouslySetInnerHTML={{ __html: `${review.review_body}`}} />
+            <Comments token={props.token} setToken={props.setToken} reviewId={params.id} />
+         </>
+    
+    )
 
     return (
-        <div className="">
-            <div className="hero position-relative d-flex align-items-center justify-content-center">
-                <img
-                    src={review.image}
-                    alt={`${review.restaurant_name} image`}
-                    className="img-fluid position-absolute"
-                />
-                <div className="overlay bg-dark position-absolute d-flex flex-column align-items-center justify-content-center">
-                    <h1 className="display-4 position-relative text-white">
-                        {review.restaurant_name}
-                    </h1>
-                    <h2 className="position-relative text-white">
-                        {new Date(review.review_date).toDateString()}
-                    </h2>
+        <div className="review-css main-container">
+            <section className="top-section">
+                <div>
+                    <h1>{review.restaurant_name}</h1>
                 </div>
-            </div>
-            <div className="container py-5">
-                <div className="row">
-                    <div className="col-sm-12 col-lg-3">
-                        <ul className="list-group sticky-top">
-                            <h5 className="mb-2">Score:</h5>
-                            <li className="list-group-item">Tenderloin score: {review.tenderloin_rating}</li>
-                            <li className="list-group-item">Sides score: {review.sides_rating}</li>
-                            <li className="list-group-item">Menu score: {review.menu_rating}</li>
-                            <li className="list-group-item">Price score: {review.price_rating}</li>
-                            <li className="list-group-item">Decor score: {review.decor_rating}</li>
-                            <li className="list-group-item">Service score: {review.service_rating}</li>
-                            <li className="list-group-item"><h5>Total: {review.total_rating}</h5></li>
-                        </ul>
-                    </div>
-                    <div className="col-sm-12 col-lg-7">
-                        <h5 className="mb-2">Review</h5>
-                        <div className="secondary-color" dangerouslySetInnerHTML={{ __html: `${review.review_body}`}} />
-                    </div>
-                    <div className="col-sm-12 col-lg-2">
-                        <button
-                            type="button"
-                            className="btn btn-danger"
-                            onClick={deleteReview}
-                        >
-                            Delete Review
-                        </button>
+                <div>
+                    <h2>{new Date(review.review_date).toDateString()}</h2>
+                </div>
+                <div>
+                    <h5><Link className="rev-link" to="/reviews">Reviews</Link> | Review Details</h5>
+                </div>
+            </section>
+            <section className="main-section">
+                <div className="review-body">
+                    <img 
+                        src={review.image}
+                    />
+                    <div className="review-text" dangerouslySetInnerHTML={{ __html: `${review.review_body}`}} />
+                    <hr/>
+                    <div className="rating">
+                        <div className="rating-breakdown">
+                            <ul>
+                                <li><label>Tenderloin rating</label></li>
+                                <li>Rating 2</li>
+                                <li>Rating 3</li>
+                            </ul>
+                        </div>
+                        <div className="rating-total">
+                            <h5>Total rating</h5>
+                        </div>
                     </div>
                 </div>
-                <div className="col-sm-12 col-lg-2">
-                    <Link
-                        to="/reviews"
-                        type="button"
-                        className="btn custom-button sticky-top"
-                    >
-                        Back
-                    </Link>
+                <div className="sidebar">
+                    <h1>Sidebar</h1>
+                    <br/>
+                    <hr></hr>
                 </div>
-            </div>
-            <div className="col-lg-6 offset-lg-3">
-                <Comments token={props.token} setToken={props.setToken} reviewId={params.id} />
-            </div>
+            </section>
         </div>
     );
 };

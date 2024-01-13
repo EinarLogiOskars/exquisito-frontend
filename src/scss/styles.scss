@@ -1,4 +1,15 @@
 @import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+.main-app-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main-app-container > :last-child {
+  padding-top: 5.2%;
+}
 
 .border-black {
   border: solid;
@@ -55,6 +66,11 @@
   backdrop-filter: blur(10px);
   box-shadow: 10px 10px 10px rgba(30,30,30,0.5);
 }
+.nav-blur {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 10px 10px 10px rgba(30,30,30,0.5);
+}
 
 .navbar-logo {
   width: 180px;
@@ -103,7 +119,84 @@
 }
 
 .reviews-css {
-  
+  //TODO
+}
+
+.review-css{
+  .main-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .main-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+  }
+  .review-body {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 30px;
+    margin-left: 5%;
+  }
+  .review-body > img {
+    background-color: rgb(245, 245, 245);
+    object-fit: contain;
+    height: 500px;
+  }
+  .review-text {
+    font-family: Roboto;
+    margin-top: 5%;
+  }
+  .rating {
+    display: grid;
+    gap: 20px;
+  }
+  .rating-breakdown {
+    background-color: rgb(253, 253, 253);
+    grid-column: 1/3;
+    grid-row: 1;
+    border: solid;
+    border-color: rgb(204, 204, 204);
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 15px;
+  }
+  .rating-breakdown > ul {
+    list-style-type: none;
+  }
+  .rating-total {
+    grid-column: 3;
+    grid-row: 1;
+    border: solid;
+    border-color: rgb(204, 204, 204);
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 15px;
+  }
+  .sidebar {
+    padding: 30px;
+  }
+  .top-section {
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: row;
+    padding: 4%;
+  }
+  .top-section > div {
+    display: flex;
+    align-items: end;
+    font-family: Roboto;
+    width: 35%;
+    margin-left: 10%;
+    text-align: center end;
+  }
+  .rev-link {
+    text-decoration: none;
+  }
 }
 
 .home-css{
@@ -588,4 +681,4 @@
       background: linear-gradient(to right, #e8cbc0, #636fa4);
       min-height: 100vh;
     }
-  }
+}
