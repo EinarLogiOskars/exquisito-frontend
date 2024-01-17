@@ -48,8 +48,8 @@ const Reviews = () => {
     );
 
     return (
-        <div className="reviews-css container-fluid">
-            <div className="row">
+        <div className="reviews-css main-div container-fluid">
+            <div className="div1 row">
                 <section className="jumbotron jumbotron-fluid bg-beige diagonal-background2">
                     <div className="container pt-5">
                         <p className="lead text-center text-muted">
