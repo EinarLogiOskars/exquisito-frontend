@@ -10,6 +10,8 @@ const Reviews = () => {
         const url = "https://exquisito-web.onrender.com/api/v1/reviews";
         axios.get(url).then((res) => {
             setReviews(res.data);
+            const first5 = res.data.slice(0, 5);
+            localStorage.setItem('recentReviews', JSON.stringify(first5));
         })
     }, []);
 

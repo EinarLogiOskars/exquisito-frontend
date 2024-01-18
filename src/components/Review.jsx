@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import Comments from "./Comments";
 import { getReview } from "../api/reviews";
+import RecentCard from "./RecentCard";
 
 const Review = (props) => {
     const params = useParams();
     const [review, setReview] = useState();
     const [isLoading, setLoading] = useState(true);
+    const recent = JSON.parse(localStorage.getItem('recentReviews'));
 
     useEffect(() => {
         (async () => {
@@ -20,6 +21,16 @@ const Review = (props) => {
             };
         })();
     }, [params.id]);
+
+    const recentReviews = recent.map((review, index) => (
+        <div key={index}>
+            <RecentCard 
+                img={review.image}
+                restaurantName={review.restaurant_name}
+                reviewDate={review.review_date}
+                id={review.id} />
+        </div>
+    ));
 
     if(isLoading) {
         return <p>Loading data.....</p>
@@ -50,34 +61,43 @@ const Review = (props) => {
                     <div className="">
                         <h5><Link className="rev-link" to="/reviews">Reviews</Link> <span className="h5-span">|</span> {review.restaurant_name}</h5>
                     </div>
-                    <hr></hr>
+                    <hr className="top-section-hr" />
                 </section>
                 <section className="main-section">
                     <div className="review-body">
                         <img 
                             src={review.image}
                         />
+                        <h1>{review.restaurant_name}</h1>
+                        <p>{new Date(review.review_date).toLocaleString('en-GB', {day:'numeric', month:'short', year:'numeric'})}</p>
                         <div className="review-text" dangerouslySetInnerHTML={{ __html: `${review.review_body}`}} />
                         <hr/>
                         <div className="rating">
                             <div className="rating-breakdown">
                                 <ul>
-                                    <li><label>Tenderloin rating</label></li>
-                                    <li>Rating 2</li>
-                                    <li>Rating 3</li>
+                                    <li><label>Tenderloin: {review.tenderloin_rating}/10</label></li>
+                                    <li>Menu: {review.menu_rating}/10</li>
+                                    <li>Service: {review.service_rating}/10</li>
+                                    <li>Decor: {review.decor_rating}/10</li>
+                                    <li>Price: {review.price_rating}/10</li>
                                 </ul>
                             </div>
                             <div className="rating-total">
                                 <h5>Total rating</h5>
+                                <h1>{review.total_rating}/10</h1>
                             </div>
                         </div>
                     </div>
                     <div className="sidebar">
-                        <h1>Sidebar</h1>
-                        <br/>
-                        <hr></hr>
+                        <div className="latest-reviews">
+                            <h3>Latest reviews</h3>
+                            <hr />
+                            
+                            <>{recentReviews}</>
+                        </div>
                     </div>
                 </section>
+                <Comments token={props.token} setToken={props.setToken} reviewId={params.id} />
             </div>
         </div>
     );
