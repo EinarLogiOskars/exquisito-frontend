@@ -14,25 +14,23 @@ import useToken from "./hooks/useToken.js";
 function App() {
   const location = useLocation();
   const { token, setToken, removeToken } = useToken();
-
-  const [stickyClass, setStickyClass] = useState('');
   const [mainBodyClass, setMainBodyClass] = useState('');
 
-    useEffect(() => {
-        window.addEventListener('scroll', stickNav);
-        return () => window.removeEventListener('scroll', stickNav);
-    }, []);
+  useEffect(() => {
+      window.addEventListener('scroll', stickNav);
+      return () => window.removeEventListener('scroll', stickNav);
+  }, []);
 
-    const stickNav = () => {
-        if (window !== undefined) {
-            let windowHeight = window.scrollY;
-            windowHeight > 180 ? setStickyClass('sticky') : setStickyClass('');
-        }
+  const stickNav = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 150 ? setMainBodyClass('padding180') : setMainBodyClass('');
     }
+  }
 
   const renderNav = () => {
       if(location.pathname !== "/") {
-          return <Navbar className={`${stickyClass}`} token={token} removeToken={removeToken} />;
+          return <Navbar token={token} removeToken={removeToken} />;
       }
   };
 
