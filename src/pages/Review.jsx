@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Comments from "./Comments";
+import Comments from "../components/Comments";
 import { getReview } from "../api/reviews";
-import RecentCard from "./RecentCard";
+import RecentCard from "../components/RecentCard";
+import axios from "axios";
 
 const Review = (props) => {
+    const navigate = useNavigate();
     const params = useParams();
     const [review, setReview] = useState();
     const [isLoading, setLoading] = useState(true);
@@ -36,23 +38,21 @@ const Review = (props) => {
         return <p>Loading data.....</p>
     }
     
-    const keep = (
-        <>
-            {review.image}
-            {review.restaurant_name}
-            {new Date(review.review_date).toDateString()}
-            {review.tenderloin_rating}
-            {review.sides_rating}
-            {review.menu_rating}
-            {review.price_rating}
-            {review.decor_rating}
-            {review.service_rating}
-            {review.total_rating}
-            <div className="secondary-color" dangerouslySetInnerHTML={{ __html: `${review.review_body}`}} />
-            <Comments token={props.token} setToken={props.setToken} reviewId={params.id} />
-         </>
-    
-    )
+    const deleteReview = () => {
+        const url = `https://exquisito-web.onrender.com/api/v1/reviews/${params.id}`;
+        const headers = JSON.parse(props.token)
+        axios
+            .delete(url, { headers: {
+                "uid": headers['uid'],
+                "client": headers['client'],
+                "access-token": headers['uToken']
+            } } )
+            .then((res) => {
+                console.log(res)
+                navigate("/reviews");
+        });
+            
+    };
 
     return (
         <div className="review-css main-container">
@@ -65,6 +65,7 @@ const Review = (props) => {
                 </section>
                 <section className="main-section">
                     <div className="review-body">
+                        <button className="custom-button btn" onClick={deleteReview}>Delete</button>
                         <img 
                             src={review.image}
                         />
@@ -75,24 +76,24 @@ const Review = (props) => {
                         <div className="rating">
                             <div className="rating-breakdown">
                                 <ul>
-                                    <li><label>Tenderloin: {review.tenderloin_rating}/10</label></li>
-                                    <li>Menu: {review.menu_rating}/10</li>
-                                    <li>Service: {review.service_rating}/10</li>
-                                    <li>Decor: {review.decor_rating}/10</li>
-                                    <li>Price: {review.price_rating}/10</li>
+                                    <li><div>Tenderloin:</div> <div>* * * * *</div> <div>{review.tenderloin_rating}/5</div></li>
+                                    <li><div>Menu:</div> <div>* * * * *</div> <div>{review.menu_rating}/5</div></li>
+                                    <li><div>Service:</div> <div>* * * * *</div> <div>{review.service_rating}/5</div></li>
+                                    <li><div>Decor:</div> <div>* * * * *</div> <div>{review.decor_rating}/5</div></li>
+                                    <li><div>Price:</div> <div>* * * * *</div> <div>{review.price_rating}/5</div></li>
                                 </ul>
                             </div>
                             <div className="rating-total">
-                                <h5>Total rating</h5>
-                                <h1>{review.total_rating}/10</h1>
+                                <h4>Total rating</h4>
+                                <h1>{review.total_rating}/5</h1>
+                                <h4>* * * * *</h4>
                             </div>
                         </div>
                     </div>
                     <div className="sidebar">
                         <div className="latest-reviews">
                             <h3>Latest reviews</h3>
-                            <hr />
-                            
+                            <hr /> 
                             <>{recentReviews}</>
                         </div>
                     </div>

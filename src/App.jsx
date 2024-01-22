@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom"
-import Welcome from "./components/Welcome.jsx";
-import Home from "./components/Home.jsx";
-import Reviews from "./components/Reviews.jsx";
-import Review from "./components/Review.jsx";
-import NewReview from "./components/NewReview.jsx";
-import Signup from "./components/Signup.jsx";
-import Signin from "./components/Signin.jsx";
+import Welcome from "./pages/Welcome.jsx";
+import Home from "./pages/Home.jsx";
+import Reviews from "./pages/Reviews.jsx";
+import Review from "./pages/Review.jsx";
+import NewReview from "./pages/NewReview.jsx";
+import Signup from "./pages/Signup.jsx";
+import Signin from "./pages/Signin.jsx";
+import Signout from "./pages/Signout.jsx";
 import Navbar from "./components/Navbar.jsx";
 import useToken from "./hooks/useToken.js";
 
@@ -14,24 +15,42 @@ function App() {
   const location = useLocation();
   const { token, setToken, removeToken } = useToken();
 
+  const [stickyClass, setStickyClass] = useState('');
+  const [mainBodyClass, setMainBodyClass] = useState('');
+
+    useEffect(() => {
+        window.addEventListener('scroll', stickNav);
+        return () => window.removeEventListener('scroll', stickNav);
+    }, []);
+
+    const stickNav = () => {
+        if (window !== undefined) {
+            let windowHeight = window.scrollY;
+            windowHeight > 180 ? setStickyClass('sticky') : setStickyClass('');
+        }
+    }
+
   const renderNav = () => {
       if(location.pathname !== "/") {
-          return <Navbar token={token} removeToken={removeToken} />;
+          return <Navbar className={`${stickyClass}`} token={token} removeToken={removeToken} />;
       }
   };
 
   return (
     <div className="main-app-container">
         {renderNav()}
-        <Routes>
-            <Route path="/" element={<Welcome token={token} />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/reviews" element={<Reviews />} />
-            <Route path="/review/:id" element={<Review token={token} setToken={setToken} />} />
-            <Route path="/review" element={<NewReview />} />
-            <Route path="/signup" element={<Signup setToken={setToken} />} />
-            <Route path="/signin" element={<Signin setToken={setToken} />} />
-        </Routes>
+        <div className={`main-body-container ${mainBodyClass}`}>
+          <Routes>
+              <Route path="/" element={<Welcome token={token} />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/review/:id" element={<Review token={token} setToken={setToken} />} />
+              <Route path="/review" element={<NewReview />} />
+              <Route path="/signup" element={<Signup setToken={setToken} />} />
+              <Route path="/signin" element={<Signin setToken={setToken} />} />
+              <Route path="/signout" element={<Signout token={token} setToken={setToken} />} />
+          </Routes>
+        </div>
     </div>
   );
 };
