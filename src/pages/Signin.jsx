@@ -1,6 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../api/users";
+import { useAuthStore } from "../store/authStore";
 
 const Signin = (props) => {
     const navigate = useNavigate();
@@ -19,7 +20,18 @@ const Signin = (props) => {
         form.append("email", email);
         form.append("password", password);
 
-        axios.post(url, form)
+        (async () => {
+            try {
+                const res = await login(form);
+                if (res.status === 200) {
+                    navigate(-1);
+                }
+            } catch (error) {
+                console.log('Error loggin in: ', error);
+            }
+        })();
+
+        /*axios.post(url, form)
             .then((res) => {
                 console.log(res);
                 const userToken = {
@@ -33,7 +45,7 @@ const Signin = (props) => {
                 navigate(-1);
             }).catch((res) => {
                 console.log(res);
-            });
+            });*/
     };
 
     return (

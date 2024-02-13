@@ -1,14 +1,17 @@
-import axios from "axios";
-
-const API_BASE_URL = 'https://exquisito-web.onrender.com';
-
-const apiService = axios.create({
-    baseURL: API_BASE_URL,
-});
+import apiClient from "./apiClient";
 
 export const getReview = async (review) => {
     try {
-        const response = await apiService.get(`/api/v1/reviews/${review}`);
+        const response = await apiClient.get(`/api/v1/reviews/${review}`);
+        return response;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getReviews = async () => {
+    try {
+        const response = await apiClient.get("api/v1/reviews");
         return response;
     } catch (error) {
         return error;

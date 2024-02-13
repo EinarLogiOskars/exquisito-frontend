@@ -18,7 +18,8 @@
     "react-router": "^6.21.1",
     "react-router-dom": "^6.21.1",
     "react-scroll-parallax": "^3.4.5",
-    "sass": "^1.69.6"
+    "sass": "^1.69.6",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

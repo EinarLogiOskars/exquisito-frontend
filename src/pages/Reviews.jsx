@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { getReviews } from "../api/reviews";
 
 const Reviews = () => {
-    const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        const url = "https://exquisito-web.onrender.com/api/v1/reviews";
-        axios.get(url).then((res) => {
-            setReviews(res.data);
-            const first5 = res.data.slice(0, 5);
-            localStorage.setItem('recentReviews', JSON.stringify(first5));
-        })
+        (async () => {
+            try {
+                const res = await getReviews();
+                setReviews(res.data);
+                const first5 = res.data.slice(0, 5);
+                localStorage.setItem('recentReviews', JSON.stringify(first5));
+            } catch (error) {
+                console.log('Error fetching review: ', error);
+            }
+        })();
     }, []);
 
     const allReviews = reviews.map((review, index) => (

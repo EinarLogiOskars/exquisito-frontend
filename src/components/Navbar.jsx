@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuthStore } from '../store/authStore'
 
 const Navbar = (props) => {
     const location = useLocation();
     const [stickyClass, setStickyClass] = useState('');
     const [hiddenClass, setHiddenClass] = useState('hidden');
+    const loggedIn = useAuthStore(state => state.isLoggedIn());
   
     useEffect(() => {
         window.addEventListener('scroll', stickNav);
@@ -42,8 +44,8 @@ const Navbar = (props) => {
                             <Link className="contact-link" to="/reviews">CONTACT US</Link>
                         </div>
                         <div className="link-div3">
-                            {props.token ? 
-                                <Link className="signout-link" to="/signout" onClick={props.removeToken} >SIGN OUT</Link> 
+                            {loggedIn ? 
+                                <Link className="signout-link" to="/signout" >SIGN OUT</Link> 
                                 : 
                                 <Link className="signin-link" to="/signin">SIGN IN / REGISTER</Link>}
                         </div>
