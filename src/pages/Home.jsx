@@ -12,7 +12,6 @@ const Home = () => {
         <div className="home-css main-div">
             <div className="div1">
                 <div className="div1-1">
-                    <h1 className="">Exquisito</h1>
                     <p>
                         Come along on a culinary adventure to find the best beef tenderloin in Reykjavík.
                     </p>

@@ -21,10 +21,26 @@ export const login = async (loginForm) => {
                 'access-token': res.headers['access-token'],
             });
             useAuthStore.getState().updateUserData(res.data);
-
-            const updatedHeaders = useAuthStore.getState().headers;
-            console.log(updatedHeaders);
         }
+        return res;
+    } catch (error) {
+        throw error;
+    };
+};
+
+export const logout = async () => {
+    try {
+        const res = await apiClient.delete('api/v1/auth/sign_out');
+        if (res.status === 200) {
+            useAuthStore.getState().updateHeaders({
+                'access-token': '',
+                'client': '',
+                'uid': '',
+            });
+            useAuthStore.getState().updateUserData({});
+
+            console.log('Logged out!');
+        };
         return res;
     } catch (error) {
         throw error;

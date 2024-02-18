@@ -8,12 +8,10 @@ import NewReview from "./pages/NewReview.jsx";
 import Signup from "./pages/Signup.jsx";
 import Signin from "./pages/Signin.jsx";
 import Signout from "./pages/Signout.jsx";
-import Navbar from "./components/Navbar.jsx";
-import useToken from "./hooks/useToken.js";
+import Navbar from "./components/Navbar/Navbar.jsx";
 
 function App() {
   const location = useLocation();
-  const { token, setToken, removeToken } = useToken();
   const [mainBodyClass, setMainBodyClass] = useState('');
 
   useEffect(() => {
@@ -30,7 +28,7 @@ function App() {
 
   const renderNav = () => {
       if(location.pathname !== "/") {
-          return <Navbar token={token} removeToken={removeToken} />;
+          return <Navbar />;
       }
   };
 
@@ -39,14 +37,14 @@ function App() {
         {renderNav()}
         <div className={`main-body-container ${mainBodyClass}`}>
           <Routes>
-              <Route path="/" element={<Welcome token={token} />} />
+              <Route path="/" element={<Welcome />} />
               <Route path="/home" element={<Home />} />
               <Route path="/reviews" element={<Reviews />} />
-              <Route path="/review/:id" element={<Review token={token} setToken={setToken} />} />
+              <Route path="/review/:id" element={<Review />} />
               <Route path="/review" element={<NewReview />} />
-              <Route path="/signup" element={<Signup setToken={setToken} />} />
-              <Route path="/signin" element={<Signin setToken={setToken} />} />
-              <Route path="/signout" element={<Signout token={token} setToken={setToken} />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/signout" element={<Signout />} />
           </Routes>
         </div>
     </div>

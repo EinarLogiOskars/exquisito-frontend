@@ -12,6 +12,7 @@ export const getReview = async (review) => {
 export const getReviews = async () => {
     try {
         const response = await apiClient.get("api/v1/reviews");
+        console.log(response);
         return response;
     } catch (error) {
         return error;

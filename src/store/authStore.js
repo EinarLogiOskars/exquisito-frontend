@@ -17,7 +17,7 @@ export const useAuthStore = create(persist(
         isLoggedIn: () => {
             const { headers } = useAuthStore.getState();
 
-            return Boolean(headers['access-token']);
+            return Boolean(headers['access-token'] !== '');
         }
     }),
     {

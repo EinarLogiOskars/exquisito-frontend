@@ -1,0 +1,132 @@
+.nav-main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: #fff; // Adjust the background color as needed
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); // Optional: adds a shadow for depth
+
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        font-size: 24px;
+        border: none;
+        background: none;
+        padding: 10px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .logo-div {
+        text-align: center;
+      }
+    .logo-div > a > img {
+        content: url("../../assets/images/new-logo-big-text.svg");
+        height: 150px;
+        width: 300px;
+    }
+  
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100px;
+      padding: 0 20px;
+  
+      &.sticky {
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); // Optional: adds a shadow for depth
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+      }
+    }
+  
+    .navbody {
+      display: flex;
+      width: 100%;
+      align-items: center;
+  
+      .left-links {
+        width: 250px; // Fixed width for the left links
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+  
+        img {
+            content: url("../../assets/images/new-logo-notext.svg");
+            height: 80px;
+            margin-left: 30px;
+        }
+      }
+  
+      .middle-links, .right-links {
+        display: flex;
+        align-items: center;
+  
+        a {
+          text-decoration: none;
+          color: #000; // Adjust the link color as needed
+          margin: 0 15px; // Adjust spacing between links
+          font-family: 'Roboto', sans-serif; // Example font
+          font-size: 16px; // Adjust the font size as needed
+          letter-spacing: 2px;
+          min-width: 190px;
+  
+          &:hover {
+            color: #555; // Adjust hover state color as needed
+          }
+        }
+      }
+  
+      .middle-links {
+        flex-grow: 1;
+        justify-content: center;
+      }
+  
+      .right-links {
+        justify-content: flex-end;
+        .username {
+          margin-right: 10px; // Adjust the spacing between username and sign out link
+        }
+      }
+    }
+    @media (max-width: 1136px) {
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+
+            &.open .navbody {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .navbody {
+            display: none;
+
+            .left-links, .middle-links, .right-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+
+                a {
+                    padding: 10px 0;
+                }
+            }
+        }
+
+        .hamburger {
+            display: block;
+        }
+    }
+  }
+  
+  // Optional: Styles for when the navbar is hidden based on scroll
+  .hidden {
+    filter: invert(98%) sepia(6%) saturate(24%) hue-rotate(166deg) brightness(99%) contrast(107%);
+  }
+  
