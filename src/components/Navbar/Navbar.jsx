@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuthStore } from '../../store/authStore'
 import { logout as apiLogout } from "../../api/users";
+import { throttle } from "../../utils/utils";
 import './Navbar.scss'
 
 const Navbar = () => {
@@ -12,8 +13,9 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
   
     useEffect(() => {
-        window.addEventListener('scroll', stickNav);
-        return () => window.removeEventListener('scroll', stickNav);
+        const throttledStickyNav = throttle(stickNav, 100);
+        window.addEventListener('scroll', throttledStickyNav);
+        return () => window.removeEventListener('scroll', throttledStickyNav);
     }, []);
   
     const stickNav = () => {
@@ -39,6 +41,7 @@ const Navbar = () => {
                 console.log(res);
             } catch (error) {
                 console.log('Error logging out: ', error);
+                alert('Error Logging out: ', error);
             }
         })();
     };
@@ -48,33 +51,36 @@ const Navbar = () => {
     }
 
     return(
-        <div className="">
-            <div className="nav-main-div">
-                {location.pathname !== "/signup" && location.pathname !== "/signin" ? renderLogo() : <></>}
-                <nav id="navbar" className={`navbar ${stickyClass} ${isMenuOpen ? 'open':''}`}>
-                    <div className="navbody">
-                        <div className={`left-links ${hiddenClass}`}>
-                            <Link to="/home"><img /></Link>
+        <div className="nav-main-div">
+            {location.pathname !== "/signup" && location.pathname !== "/signin" ? renderLogo() : <></>}
+            <nav id="navbar" className={`navbar ${stickyClass}`}>
+                <div className={`navbar-logo ${hiddenClass}`}>
+                    <Link to="/home"><img /></Link>
+                </div>
+                <div className={`navbody`}>
+                    <div className="hamburger-div">
+                        <button className="hamburger" onClick={toggleMenu}>☰</button>
+                    </div>
+                    <div className={`link-container ${isMenuOpen ? 'open':''}`}>
+                        <div className={`middle-links`}>
+                            <NavLink className="reviews-link" to="/reviews" onClick={toggleMenu}>REVIEWS</NavLink>
+                            <NavLink className="about-link" to="/reviews" onClick={toggleMenu}>ABOUT US</NavLink>
+                            <NavLink className="contact-link" to="/reviews" onClick={toggleMenu}>CONTACT US</NavLink>
                         </div>
-                        <div className="middle-links">
-                            <NavLink className="reviews-link" to="/reviews">REVIEWS</NavLink>
-                            <NavLink className="about-link" to="/reviews">ABOUT US</NavLink>
-                            <NavLink className="contact-link" to="/reviews">CONTACT US</NavLink>
-                        </div>
-                        <div className="right-links">
+                        <div className={`right-links`}>
                             {loggedIn ? (
                                 <>
                                     <span className="username">Username</span>
                                     <NavLink className="signout-link" to="/signout" onClick={logout}>SIGN OUT</NavLink>
                                 </>
                                 ) : (
-                                <NavLink className="signin-link" to="/signin">SIGN IN / REGISTER</NavLink>
+                                <NavLink className="signin-link" to="/signin" onClick={toggleMenu}>SIGN IN / REGISTER</NavLink>
                                 )}
                         </div>
+
                     </div>
-                    <button className="hamburger" onClick={toggleMenu}>☰</button>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </div>
     );
 };
