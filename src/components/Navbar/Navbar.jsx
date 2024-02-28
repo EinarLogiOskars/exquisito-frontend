@@ -53,21 +53,21 @@ const Navbar = () => {
     return(
         <div className="nav-main-div">
             {location.pathname !== "/signup" && location.pathname !== "/signin" ? renderLogo() : <></>}
-            <nav id="navbar" className={`navbar ${stickyClass}`}>
+            <nav id="navbar" className={`navbar ${stickyClass} ${isMenuOpen ? 'open':''}`}>
                 <div className={`navbar-logo ${hiddenClass}`}>
                     <Link to="/home"><img /></Link>
                 </div>
-                <div className={`navbody`}>
+                <div className={`navbody ${isMenuOpen ? 'open':''}`}>
                     <div className="hamburger-div">
                         <button className="hamburger" onClick={toggleMenu}>☰</button>
                     </div>
                     <div className={`link-container ${isMenuOpen ? 'open':''}`}>
-                        <div className={`middle-links`}>
+                        <div className="middle-links">
                             <NavLink className="reviews-link" to="/reviews" onClick={toggleMenu}>REVIEWS</NavLink>
                             <NavLink className="about-link" to="/reviews" onClick={toggleMenu}>ABOUT US</NavLink>
                             <NavLink className="contact-link" to="/reviews" onClick={toggleMenu}>CONTACT US</NavLink>
                         </div>
-                        <div className={`right-links`}>
+                        <div className="right-links">
                             {loggedIn ? (
                                 <>
                                     <span className="username">Username</span>
@@ -77,7 +77,6 @@ const Navbar = () => {
                                 <NavLink className="signin-link" to="/signin" onClick={toggleMenu}>SIGN IN / REGISTER</NavLink>
                                 )}
                         </div>
-
                     </div>
                 </div>
             </nav>

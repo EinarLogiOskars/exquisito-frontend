@@ -9,6 +9,10 @@
   font-family: Roboto;
 }
 
+#root {
+  width: 100%;
+}
+
 .main-app-container {
   height: 100vh;
   width: 100%;
@@ -254,115 +258,6 @@
     color: rgb(116, 116, 116);
   }
 }
-
-.home-css{
-  .main-div {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-  .parallax-container {
-    min-height: 100vh;
-    background-attachment: fixed;
-  }
-  .div1 {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .div1-1 {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 3%;
-  }
-  .div1-1 > h1 {
-    margin-left: 3%;
-    font-weight: 200;
-    font-size: 350%;
-    text-align: center;
-  }
-  .div1-1 > p {
-    margin-left: 3%;
-    font-weight: 300;
-    font-size: 125%;
-    text-align: center;
-  }
-  .div1-buffer {
-    position: relative;
-    background-color: white;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 3%;
-  }
-  .div1-buffer > p {
-    margin: 3%;
-    font-weight: 300;
-    font-size: 125%;
-    text-align: center;
-  }
-  .linkdiv {
-    display: flex;
-    justify-content: center;
-  }
-  .rlink {
-    color: black;
-    font-weight: 300;
-  }
-  .div1-parallax {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 50vh;
-  }
-  .div1-parallax > div {
-    background-image: url("../assets/images/top-view-fillet.webp");
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    background-position: center top;
-    background-size: cover;
-  }
-  .div1-parallax2 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 50vh;
-  }
-  .div1-parallax2 > div {
-    background-image: url("../assets/images/restaurant.webp");
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-  }
-  .div1-parallax3 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 50vh;
-  }
-  .div1-parallax3 > div  {
-    background-image: url("../assets/images/fillet.webp");
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-  }
-} 
 
 .articles-css {
     $main-green: #79dd09 !default;

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Home.scss"
+
 
 const Home = () => {
 
@@ -9,7 +11,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="home-css main-div">
+        <div className="main-div">
             <div className="div1">
                 <div className="div1-1">
                     <p>
@@ -46,7 +48,7 @@ const Home = () => {
                         preparation imaginable, determined to find the ultimate culinary gem.
                     </p>
                     <div className="linkdiv">
-                        <h1><Link className="rlink" to="/reviews">Check out our reviews!</Link></h1>
+                        <h1><Link className="review-link" to="/reviews">Check out our reviews!</Link></h1>
                     </div>
                 </div>
             </div>
