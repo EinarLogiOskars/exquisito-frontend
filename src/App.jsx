@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom"
+import { throttle } from "./utils/utils.js";
 import Welcome from "./pages/Welcome.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Reviews from "./pages/Reviews.jsx";
@@ -15,14 +16,15 @@ function App() {
   const [mainBodyClass, setMainBodyClass] = useState('');
 
   useEffect(() => {
-      window.addEventListener('scroll', stickNav);
-      return () => window.removeEventListener('scroll', stickNav);
+      const throttledStickyNav = throttle(stickNav, 100);
+      window.addEventListener('scroll', throttledStickyNav);
+      return () => window.removeEventListener('scroll', throttledStickyNav);
   }, []);
 
   const stickNav = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 150 ? setMainBodyClass('padding180') : setMainBodyClass('');
+      windowHeight > 150 ? setMainBodyClass('padding100') : setMainBodyClass('');
     }
   }
 

@@ -40,7 +40,7 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="div1-parallax3">
-                        <div><div></div></div>
+                        <div></div>
                 </div>
                 <div className="div1-buffer">
                     <p>
